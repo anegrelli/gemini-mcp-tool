@@ -11,8 +11,12 @@ toolRegistry.push(
   pingTool,
   helpTool,
   brainstormTool,
-  fetchChunkTool,
-  timeoutTestTool
+  fetchChunkTool
 );
+
+// Only register test-only tools when explicitly enabled (e.g. judge/e2e test suite)
+if (process.env.GEMINI_MCP_TEST_TOOLS) {
+  toolRegistry.push(timeoutTestTool);
+}
 
 export * from './registry.js';
